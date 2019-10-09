@@ -1,0 +1,28 @@
+<div class="detail-view">
+  <ng-container [ngSwitch]="templateSwitch">
+      <ng-container  *ngSwitchCase="'OK'" [ngTemplateOutlet]="productTemp"></ng-container>
+      <app-not-found *ngSwitchCase="'NOT_FOUND'"></app-not-found>
+      <app-error  *ngSwitchCase="'ERROR'" (tryAgain)="getProduct()"></app-error>
+      <app-spinner *ngSwitchDefault></app-spinner>
+  </ng-container>
+
+  <ng-template #productTemp>
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>{{ product.title }}</mat-card-title>
+        <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
+        <div>{{ product.date | date:'short' }}</div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ product.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (tap)="openDialog('update')">Edit</button>
+        <button mat-button (tap)="openDialog('delete') ">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
+
+</div>

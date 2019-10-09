@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>{{ method | titlecase }} Product</h1>
+<ng-container *ngIf="method === 'delete' then delete; else createOrUpdate"></ng-container>
+
+<ng-template #delete>
+
+  <div mat-dialog-content>
+    Are you sure you want to delete {{ model.title }}?
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button cdkFocusInitial (tap)="submit()">{{ method | titlecase }}</button>
+  </div>
+
+</ng-template>
+
+<ng-template #createOrUpdate>
+
+  <form class="example-form" (ngSubmit)="submit()" #productForm="ngForm">
+    <div mat-dialog-content>
+      <mat-form-field [class.mb-4]="title.errors ? title.errors.minlength : false">
+        <input matInput [(ngModel)]="model.title" name="title" #title="ngModel" placeholder="Title" type="text" required
+        [pattern]="alaphabetRegex" minlength="3">
+        <mat-error *ngIf="title.errors ? title.errors.minlength : false">
+          Please enter a name with at least 3 characters.
+        </mat-error>
+        <mat-error *ngIf="title.errors ? title.errors.pattern : false">
+            Must Only Contain Letters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput class="text-left" [(ngModel)]="model.price" name="price" #price="ngModel" placeholder="Price"
+          currencyMask required>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="model.description" name="description" #description="ngModel"
+          placeholder="Description" type="text"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="model.date" name="date" #date="ngModel" [matDatepicker]="picker"
+          placeholder="Choose a date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [disabled]="productForm.form.invalid" type="submit"
+        cdkFocusInitial>{{ method | titlecase }}</button>
+    </div>
+  </form>
+
+</ng-template>

@@ -1,0 +1,12 @@
+<mat-toolbar class="toolbar">
+  <mat-icon [class.hidden]="hideBackNav" class="cursor-pointer" [routerLink]="['../']" aria-hidden="false" aria-label="back arrow icon">arrow_back</mat-icon>
+  <span class="m-auto">
+    {{ title | titlecase }}
+  </span>
+  <span class="empty"></span>
+</mat-toolbar>
+<div class="document">
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

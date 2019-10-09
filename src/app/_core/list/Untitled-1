@@ -1,0 +1,7 @@
+    if (update.length < this.batchSize) {
+      let objectsToAdd = (this.pageSize - (update.length % this.pageSize)) + 1;
+      objectsToAdd = (objectsToAdd === this.pageSize + 1) ? 1 : objectsToAdd;
+      console.log('LOG OBJECTS TO ADD', objectsToAdd);
+      update = update.concat(Array(objectsToAdd).fill({ last: true }));
+    } else {
+    }
