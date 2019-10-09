@@ -2,5 +2,5 @@
   <div class="mb-4 text-center">
     {{ message }}
   </div>
-  <button *ngIf="!disableTryAgain" mat-raised-button color="primary" (tap)="tryAgain.emit(true)">Try Again?</button>
+  <button *ngIf="!disableTryAgain" mat-raised-button color="primary" (click)="tryAgain.emit(true)">Try Again?</button>
 </div>

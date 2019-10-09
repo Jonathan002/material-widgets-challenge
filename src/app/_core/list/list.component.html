@@ -4,7 +4,7 @@
     <mat-form-field class="table-search">
       <input matInput placeholder="Search" value="" (input)="searchText$.next($event.target.value)">
     </mat-form-field>
-    <button mat-raised-button color="primary" (tap)="openDialog('create')">Create</button>
+    <button mat-raised-button color="primary" (click)="openDialog('create')">Create</button>
   </div>
   <table mat-table matSort (matSortChange)="paginator.firstPage()" [dataSource]="dataSource" class="mat-elevation-z8" [class.d-none]="loadNextBatch">
 
