@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { Product, ManageProductData } from 'src/app/_models/product.model';
+import { Product, ManageProductData } from './../../_models/product.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({

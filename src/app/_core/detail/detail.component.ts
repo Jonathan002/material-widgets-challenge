@@ -7,7 +7,8 @@ import { ProductsService } from '../../_serivces/products.service';
 import { Subscription } from 'rxjs';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { Update, Delete } from 'src/app/_models/app.model';
+import { Update, Delete } from './../../_models/app.model';
+
 import { ProductManageComponent } from '../product-manage/product-manage.component';
 import * as Case from 'case';
 

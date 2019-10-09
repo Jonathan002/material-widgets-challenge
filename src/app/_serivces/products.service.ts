@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 import { Product, ProductsQuery } from '../_models/product.model';
 import { ErrorService } from './error.service';
 
