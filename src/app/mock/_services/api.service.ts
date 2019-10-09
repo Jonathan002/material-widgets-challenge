@@ -73,10 +73,10 @@ export class ApiService {
     const id = pathArr.pop();
     if (id) {
       const productIdx = this.database.findIndex(product => product.id === id);
-      if (productIdx) {
+      if (productIdx > -1) {
         this.database.splice(productIdx, 1);
         this.res = new MockResponse(null, 204, 'NO_CONTENT');
-        return
+        return;
       }
     }
     this.next();
@@ -85,7 +85,7 @@ export class ApiService {
   private putProduct(req?) {
     const { body } = req;
     const productIdx = this.database.findIndex((product) => product.id === body.id);
-    if (productIdx !== -1) {
+    if (productIdx > -1) {
       this.database[productIdx] = body;
       this.res = new MockResponse(null, 204, 'NO_CONTENT');
     } else {

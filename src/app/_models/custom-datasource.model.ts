@@ -14,24 +14,15 @@ export class CustomDataSource extends MatTableDataSource<Product> {
     if (!active || direction === '') { return data; }
 
     return data.sort((a, b) => {
-      let valueA = this.sortingDataAccessor(a, active);
-      let valueB = this.sortingDataAccessor(b, active);
-      if (valueA === null) {
-        return -1;
-      } else if (valueB === null) {
-        return 1;
-      }
+      // this.sortingDataAccessor converts strings to numbers if number val detected
+      // ISO date strings are also designed to be sort ready
+      const valueA = this.sortingDataAccessor(a, active);
+      const valueB = this.sortingDataAccessor(b, active);
 
-      switch (active) {
-        case 'date':
-          valueA = new Date(valueA).valueOf();
-          valueB = new Date(valueB).valueOf();
-          break;
-        // this.sortingDataAccessor converts strings to numbers if number val detected
-        case 'price':
-        case 'title':
-        default:
-          break;
+      if (!valueA) {
+        return 1;
+      } else if (!valueB) {
+        return -1;
       }
 
       let comparatorResult = 0;
